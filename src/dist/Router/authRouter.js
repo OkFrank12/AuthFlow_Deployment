@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const multer_1 = require("../Utils/multer");
+const authController_1 = require("../Controller/authController");
+const auth = (0, express_1.Router)();
+auth.route("/register").post(multer_1.Upload, authController_1.registerUser);
+auth.route("/sign-in").post(authController_1.signInUser);
+auth.route("/see-all").get(authController_1.seeAllUser);
+auth.route("/:authID/see").get(authController_1.seeOneUser);
+exports.default = auth;
